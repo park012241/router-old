@@ -11,24 +11,22 @@
       true,
       "single"
     ],
-    "member-access": [
-      false
-    ],
-    "ordered-imports": [
-      false
-    ],
+    "member-access": true,
+    "ordered-imports": true,
     "max-line-length": [
       true,
       150
     ],
-    "member-ordering": [
-      false
-    ],
-    "interface-name": [
-      false
-    ],
+    "member-ordering": true,
+    "interface-name": false,
     "arrow-parens": false,
-    "object-literal-sort-keys": false
+    "object-literal-sort-keys": true,
+    "trailing-comma": true,
+    "semicolon": true,
+    "no-for-in-array": true,
+    "prefer-const": true,
+    "prefer-readonly": true,
+    "prefer-method-signature": true
   },
   "rulesDirectory": []
 }
