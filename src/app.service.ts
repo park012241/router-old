@@ -7,6 +7,6 @@ export class AppService {
   }
 
   async getHello(): Promise<string> {
-    return (await this.sshService.execute('echo "Hello World!"')).stdout.toString();
+    return ((await this.sshService.execute('echo "Hello World!"')).stdout || Buffer.from('SSH Error')).toString();
   }
 }
