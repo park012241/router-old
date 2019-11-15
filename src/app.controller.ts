@@ -7,7 +7,12 @@ export class AppController {
   }
 
   @Get()
-  getHello(): Promise<string> {
+  public getHello(): Promise<string> {
     return this.appService.getHello();
+  }
+
+  @Get('iptables')
+  public iptables(): Promise<string> {
+    return this.appService.iptables();
   }
 }

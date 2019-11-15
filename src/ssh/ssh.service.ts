@@ -35,12 +35,11 @@ export class SshService {
           stream.on('close', (code, signal) => {
             result.exitCode = code;
             result.signal = signal;
-            this.client.end();
             resolve(result);
           }).on('data', (data) => {
-            result.stdout = data;
+            result.stdout = Buffer.concat([result.stdout || Buffer.from([]), data]);
           }).stderr.on('data', (data) => {
-            result.stderr = data;
+            result.stderr = Buffer.concat([result.stderr || Buffer.from([]), data]);
           });
         });
       }).connect(this.sshConfig);
