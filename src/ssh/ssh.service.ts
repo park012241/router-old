@@ -15,6 +15,8 @@ export class SshService {
   private client: Client;
   private sshConfig: ConnectConfig = {};
 
+  private newLine = Buffer.from('\n');
+
   constructor(private readonly config: ConfigProvider) {
     this.client = new Client();
     Object.assign(this.sshConfig, config.ssh);
@@ -26,7 +28,9 @@ export class SshService {
         this.client.exec(command, (err, stream) => {
           const result: ExecResult = {
             signal: 0,
-            exitCode: 0
+            exitCode: 0,
+            stdout: Buffer.from([]),
+            stderr: Buffer.from([])
           };
 
           if (err) {
@@ -37,9 +41,9 @@ export class SshService {
             result.signal = signal;
             resolve(result);
           }).on('data', (data) => {
-            result.stdout = Buffer.concat([result.stdout || Buffer.from([]), data]);
+            result.stdout = Buffer.concat([result.stdout, this.newLine, data]);
           }).stderr.on('data', (data) => {
-            result.stderr = Buffer.concat([result.stderr || Buffer.from([]), data]);
+            result.stderr = Buffer.concat([result.stderr, this.newLine, data]);
           });
         });
       }).connect(this.sshConfig);

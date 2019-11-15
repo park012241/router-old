@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Header } from '@nestjs/common';
 import { AppService } from './app.service';
 
 @Controller()
@@ -12,6 +12,7 @@ export class AppController {
   }
 
   @Get('iptables')
+  @Header('content-type', 'text/plain')
   public iptables(): Promise<string> {
     return this.appService.iptables();
   }
