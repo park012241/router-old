@@ -30,7 +30,7 @@
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.0",
     "rxjs": "^6.5.3",
-    "ssh2": "^0.8.6"
+    "ssh2": "^1.4.0"
   },
   "devDependencies": {
     "@nestjs/cli": "^6.9.0",
